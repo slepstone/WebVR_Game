@@ -80,41 +80,35 @@
     loadingCover.style.display = "";
 
 	var script = document.createElement("script");
-	var unityInstance, control;
-	script.src = loaderUrl;
-	script.onload = () => {
-		createUnityInstance(canvas, config, (progress) => {
-			progressBarFull.style.width = 100 * progress + "%";
-		}).then((unity) => {
-			unityInstance = unity;
+		var unityInstance, control;
+		script.src = loaderUrl;
+		script.onload = () => {
+			createUnityInstance(canvas, config, (progress) => {
+				progressBarFull.style.width = 100 * progress + "%";
+			}).then((unity) => {
+				unityInstance = unity;
 
-			// window.addEventListener('deviceorientation', function (event) {
-			//   //unityInstance.SendMessage('GyroController', 'OnHello', "On Device" + event.alpha);
-			//   unityInstance.SendMessage('GyroController', 'OnDeviceOrientation', event.alpha + ":" + event.beta + ":" + event.gamma);
-			// });
+				// window.addEventListener('deviceorientation', function (event) {
+				//   //unityInstance.SendMessage('GyroController', 'OnHello', "On Device" + event.alpha);
+				//   unityInstance.SendMessage('GyroController', 'OnDeviceOrientation', event.alpha + ":" + event.beta + ":" + event.gamma);
+				// });
 
-			loadingBar.style.display = "none";
-			fullscreenButton.onclick = () => {
-				unityInstance.SetFullscreen(1);
-			};
-		}).catch((message) => {
-			alert(message);
-		});
-	};
+				loadingBar.style.display = "none";
+				fullscreenButton.onclick = () => {
+					unityInstance.SetFullscreen(1);
+				};
+			}).catch((message) => {
+				alert(message);
+			});
+		};
 
-    var deviceOrientation = FULLTILT.getDeviceOrientation({ 'type': 'world' });
-    deviceOrientation.then(function (orientationData) {
-      orientationData.listen(function () {
-        var quaternion = deviceOrientation.getScreenAdjustedQuaternion();
-        console.log(quaternion);
-      });
-    });
 
-    		// Wait for Promise fulfillment
+
+		// Wait for Promise fulfillment
 		function requestOrientationPermission() {
 			var startButton = document.querySelector("#start-button");
 			startButton.style.display = "none";
-			if (DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+			if (typeof DeviceOrientationEvent.requestPermission === 'function') {
 				DeviceOrientationEvent.requestPermission()
 					.then(permissionState => {
 						if (permissionState === 'granted') {
@@ -142,9 +136,10 @@
 
 			}
 		}
-  </script>
+	</script>
 
-  <button id="start-button" onclick='requestOrientationPermission();'>Start</button>
+	<button id="start-button" onclick='requestOrientationPermission();'>Start</button>
+
 </body>
 
 </html>
