@@ -79,27 +79,28 @@
     }
     loadingCover.style.display = "";
 
-    const script = document.createElement("script");
-    script.src = loaderUrl;
-    script.onload = () => {
-			createUnityInstance(canvas, config, (progress) => {
-				progressBarFull.style.width = 100 * progress + "%";
-			}).then((unity) => {
-				unityInstance = unity;
+	var script = document.createElement("script");
+	var unityInstance, control;
+	script.src = loaderUrl;
+	script.onload = () => {
+		createUnityInstance(canvas, config, (progress) => {
+			progressBarFull.style.width = 100 * progress + "%";
+		}).then((unity) => {
+			unityInstance = unity;
 
-				// window.addEventListener('deviceorientation', function (event) {
-				//   //unityInstance.SendMessage('GyroController', 'OnHello', "On Device" + event.alpha);
-				//   unityInstance.SendMessage('GyroController', 'OnDeviceOrientation', event.alpha + ":" + event.beta + ":" + event.gamma);
-				// });
+			// window.addEventListener('deviceorientation', function (event) {
+			//   //unityInstance.SendMessage('GyroController', 'OnHello', "On Device" + event.alpha);
+			//   unityInstance.SendMessage('GyroController', 'OnDeviceOrientation', event.alpha + ":" + event.beta + ":" + event.gamma);
+			// });
 
-				loadingBar.style.display = "none";
-				fullscreenButton.onclick = () => {
-					unityInstance.SetFullscreen(1);
-				};
-			}).catch((message) => {
-				alert(message);
-			});
-		};
+			loadingBar.style.display = "none";
+			fullscreenButton.onclick = () => {
+				unityInstance.SetFullscreen(1);
+			};
+		}).catch((message) => {
+			alert(message);
+		});
+	};
 
     var deviceOrientation = FULLTILT.getDeviceOrientation({ 'type': 'world' });
     deviceOrientation.then(function (orientationData) {
