@@ -70,12 +70,13 @@
         container.className = "unity-mobile";
         config.devicePixelRatio = 1;
       }
-      loadingCover.style.display = "";
+      loadingCover.style.display = "none";
 
       var script = document.createElement("script");
 		var unityInstance, control;
 		script.src = loaderUrl;
 		script.onload = () => {
+      loadingCover.style.display = "";
 			createUnityInstance(canvas, config, (progress) => {
 				progressBarFull.style.width = 100 * progress + "%";
 			}).then((unity) => {
