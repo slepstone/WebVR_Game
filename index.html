@@ -76,8 +76,8 @@
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const location = urlParams.get('s')
-    console.log(location);
+    const shop = urlParams.get('s')
+    console.log(shop);
     var script = document.createElement("script");
     var unityInstance, control;
     script.src = loaderUrl;
@@ -87,7 +87,8 @@
         progressBarFull.style.width = 100 * progress + "%";
       }).then((unity) => {
         unityInstance = unity;
-        unityInstance.SendMessage('TeleportControl', 'Teleport',location);
+        if(shop != null)
+          unityInstance.SendMessage('TeleportControl', 'Teleport',shop);
         // window.addEventListener('deviceorientation', function (event) {
         //   //unityInstance.SendMessage('GyroController', 'OnHello', "On Device" + event.alpha);
         //   unityInstance.SendMessage('GyroController', 'OnDeviceOrientation', event.alpha + ":" + event.beta + ":" + event.gamma);
