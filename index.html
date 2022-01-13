@@ -91,7 +91,7 @@
           unityInstance.SendMessage('TeleportControl', 'Teleport', shop);
 
 
-        if (control == null) {
+        if (control == null || !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
           unityInstance.SendMessage('GyroController', 'DisableGyro');
         }
         // window.addEventListener('deviceorientation', function (event) {
