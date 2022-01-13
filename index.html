@@ -39,7 +39,7 @@
       dataUrl: buildUrl + "/WebVR_Game.data",
       frameworkUrl: buildUrl + "/WebVR_Game.framework.js",
       codeUrl: buildUrl + "/WebVR_Game.wasm",
-      streamingAssetsUrl: "StreamingAssets",
+        streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "WebAPIGyro",
       productVersion: "0.1",
@@ -91,9 +91,7 @@
           unityInstance.SendMessage('TeleportControl', 'Teleport', shop);
 
 
-        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-
-        } else {
+        if (control == null) {
           unityInstance.SendMessage('GyroController', 'DisableGyro');
         }
         // window.addEventListener('deviceorientation', function (event) {
